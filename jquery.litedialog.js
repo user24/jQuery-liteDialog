@@ -3,13 +3,13 @@
     $.fn.bringToFront = function() {
         var zmax = 0;
         $('*').each(function() {
-            var cur = parseInt($(this).css('z-index'));
+            var cur = parseInt($(this).css('z-index'), 10);
             zmax = cur > zmax ? cur : zmax;
         });
         return this.each(function() {
             $(this).css("z-index", ++zmax);
         });
-    }
+    };
 })( jQuery );
 /* / bringToFront */
 
@@ -19,7 +19,7 @@
 /* more at puremango.co.uk and source available at https://github.com/user24/jQuery-liteDialog */
 (function( $ ){
     function escapeHitHide(e) {
-        if(e.keyCode == 27) {
+        if(e.keyCode === 27) {
             $.liteDialog('hide');
         }
     }
@@ -44,7 +44,7 @@
             }
             
             // create shadow if not already added to DOM
-            if($('#'+prefix+'shadow').length == 0) {
+            if($('#'+prefix+'shadow').length === 0) {
                 $("<div id='"+prefix+"shadow' style='position:fixed;top:0;left:0;'>").hide().bringToFront().css({
                     "height"    : $(document).height(),
                     "width"     : $(document).width()
@@ -52,7 +52,7 @@
             }
             
             // create dialog if not already added to DOM
-            if($('#'+prefix+'dialog').length == 0) {
+            if($('#'+prefix+'dialog').length === 0) {
                 $("<div id='"+prefix+"dialog' style='position:absolute;'>").hide().bringToFront().appendTo(document.body);
             }
             
