@@ -14,9 +14,9 @@
 /* / bringToFront */
 
 /* liteDialog by Howard Yeend, developed for Twist Digital Media */
-/* Usage: to show: $.liteDialog({'html':'Dialog contents here'}); */
+/* Basic usage: to show: $.liteDialog({'html':'Dialog contents here'}); */
 /*        to hide: $.liteDialog('hide'); */
-/* more at puremango.co.uk */
+/* more at puremango.co.uk and source available at https://github.com/user24/jQuery-liteDialog */
 (function( $ ){
     function escapeHitHide(e) {
         if(e.keyCode == 27) {
