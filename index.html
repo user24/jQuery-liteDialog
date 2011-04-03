@@ -5,17 +5,16 @@
     <script>
 
     $(document).ready(function() {
-        $('#one').click(function() {
-            $.liteDialog({ html: 'modal', modal:true});
+        
+        /* This is the most basic way of attaching an event listener which fires a liteDialog */
+        $('#normal').click(function() {
+            $.liteDialog({ html: 'This is a normal liteDialog.'} );
         });
 
-        $('#two').click(function() {
-            $.liteDialog({ html: 'normal'});
-        });
-        
+        /* This example sets some custom options to show how you can customise liteDialog to fit your needs. */
         $('#funky').click(function() {
             $.liteDialog({
-                html: "Your <b>HTML</b> here",
+                html: "This liteDialog has a few custom options set.",
                 shadow: 'red',
                 width: '200px',
                 borderRadius: '20px',
@@ -23,13 +22,43 @@
                 color: 'blue',
                 padding: 0
             });
-        });    
+        });
+        
+        /* This shows how to load content into liteDialog from an element on the page */
+        $('#element').click(function() {
+            $.liteDialog({ html: $('#dialog').html() });
+        });
+        
+        /* This shows how to load content into liteDialog via Ajax */
+        $('#ajax').click(function() {
+            $.get("./ajax_dialog.html", function(data, textStatus, jqXHR) {
+                $.liteDialog({ html: data });
+            });
+        });
+        
+        /* This example specifies an option which means the dialog cannot be dismissed except through JavaScript */
+        $('#modal').click(function() {
+            $.liteDialog({ html: 'This liteDialog cannot be dismissed except through JavaScript - in this example we\'ve a setTimeout to dismiss it after 4 seconds.', modal:true} );
+            
+            setTimeout(function() {
+                $.liteDialog('hide');
+            }, 4000);
+        });
     });
+    
     </script>
     </head>
     <body>
-        <div id='one'>modal</div><br />
-        <div id='two'>normal</div><br />
-        <div id='funky'>funky</div>
+        <div id='normal'>open standard liteDialog</div><br />
+
+        <div id='funky'>open funky liteDialog</div><br />
+        
+        <div id='element'>open liteDialog with content from an element on the page</div><br />
+        
+        <div id='ajax'>open liteDialog with ajax content</div><br />
+
+        <div id='modal'>open modal liteDialog (auto-dismisses after 4 seconds)</div><br />
+        
+        <div id='dialog' style="display:none;">I'm a hidden element on the page</div>
     </body>
 </html>
