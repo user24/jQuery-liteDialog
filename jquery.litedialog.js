@@ -16,7 +16,7 @@
                 'html' : 'liteDialog',
                 'modal' : false,
                 'shadow' : '#000000',
-                'borderRadius' : '25px',
+                'shadowRadius' : '25px',
                 'background' : '#FFFFFF',
                 'color' : '#000000',
                 'width' : '300px',
@@ -47,9 +47,9 @@
             
             // fade dialog in, centered on page.
             $('#'+prefix+'Dialog').html(settings.html).width(settings.width).css({
-                'box-shadow' : '0px 0px '+settings.borderRadius+' '+settings.shadow,
-                '-moz-box-shadow' : '0px 0px '+settings.borderRadius+' '+settings.shadow,
-                '-webkit-box-shadow' : '0px 0px '+settings.borderRadius+' '+settings.shadow,
+                'box-shadow' : '0px 0px '+settings.shadowRadius+' '+settings.shadow,
+                '-moz-box-shadow' : '0px 0px '+settings.shadowRadius+' '+settings.shadow,
+                '-webkit-box-shadow' : '0px 0px '+settings.shadowRadius+' '+settings.shadow,
                 'color' : settings.color,
                 'background' : settings.background,
                 'padding' : settings.padding,
