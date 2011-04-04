@@ -49,19 +49,26 @@
         });
         
         </script>
+        <style>
+        .opener{
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+        }
+        </style>
     </head>
     <body>
         <a href="http://www.puremango.co.uk/2011/04/jquery-simple-dialog/">jQuery liteDialog plugin</a> demo page<br /><br />
         
-        <div id='normal'>open standard liteDialog</div><br />
+        <div id='normal' class='opener'>open standard liteDialog</div><br />
 
-        <div id='funky'>open funky liteDialog</div><br />
+        <div id='funky' class='opener'>open funky liteDialog</div><br />
         
-        <div id='element'>open liteDialog with content from an element on the page</div><br />
+        <div id='element' class='opener'>open liteDialog with content from an element on the page</div><br />
         
-        <div id='ajax'>open liteDialog with ajax content</div><br />
+        <div id='ajax' class='opener'>open liteDialog with ajax content</div><br />
 
-        <div id='modal'>open modal liteDialog (auto-dismisses after 4 seconds)</div><br />
+        <div id='modal' class='opener'>open modal liteDialog (auto-dismisses after 4 seconds)</div><br />
         
         <div id='dialog' style="display:none;">I'm a hidden element on the page</div>
     </body>
