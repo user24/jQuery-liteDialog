@@ -1,52 +1,54 @@
 <html>
     <head>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
-    <script src="./jquery.litedialog.js"></script>
-    <script>
-
-    $(document).ready(function() {
-        
-        /* This is the most basic way of attaching an event listener which fires a liteDialog */
-        $('#normal').click(function() {
-            $.liteDialog('This is a normal liteDialog.');
-        });
-
-        /* This example sets some custom options to show how you can customise liteDialog to fit your needs. */
-        $('#funky').click(function() {
-            $.liteDialog({
-                html: "This liteDialog has a few custom options set.",
-                shadow: 'red',
-                width: '200px',
-                borderRadius: '20px',
-                background: '#00FFCC',
-                color: 'blue',
-                padding: 0
-            });
-        });
-        
-        /* This shows how to load content into liteDialog from an element on the page */
-        $('#element').click(function() {
-            $.liteDialog({ html: $('#dialog').html() });
-        });
-        
-        /* This shows how to load content into liteDialog via Ajax */
-        $('#ajax').click(function() {
-            $.get("./ajax_dialog.html", function(data, textStatus, jqXHR) {
-                $.liteDialog({ html: data });
-            });
-        });
-        
-        /* This example specifies an option which means the dialog cannot be dismissed except through JavaScript */
-        $('#modal').click(function() {
-            $.liteDialog({ html: 'This liteDialog cannot be dismissed except through JavaScript - in this example we\'ve a setTimeout to dismiss it after 4 seconds.', modal:true} );
-            
-            setTimeout(function() {
-                $.liteDialog('hide');
-            }, 4000);
-        });
-    });
+        <title>jQuery liteDialog demo</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+        <script src="./jquery.litedialog.min.js"></script>
+        <script>
     
-    </script>
+        $(document).ready(function() {
+            
+            /* This is the most basic way of attaching an event listener which fires a liteDialog */
+            $('#normal').click(function() {
+                $.liteDialog('This is a normal liteDialog.');
+            });
+    
+            /* This example sets some custom options to show how you can customise liteDialog to fit your needs. */
+            $('#funky').click(function() {
+                $.liteDialog({
+                    html: "This liteDialog has a few custom options set.",
+                    shadow: 'red',
+                    width: '200px',
+                    borderRadius: '20px',
+                    background: '#00FFCC',
+                    color: 'blue',
+                    padding: 0,
+                    zIndex: 10000
+                });
+            });
+            
+            /* This shows how to load content into liteDialog from an element on the page */
+            $('#element').click(function() {
+                $.liteDialog({ html: $('#dialog').html() });
+            });
+            
+            /* This shows how to load content into liteDialog via Ajax */
+            $('#ajax').click(function() {
+                $.get("./ajax_dialog.html", function(data, textStatus, jqXHR) {
+                    $.liteDialog({ html: data });
+                });
+            });
+            
+            /* This example specifies an option which means the dialog cannot be dismissed except through JavaScript */
+            $('#modal').click(function() {
+                $.liteDialog({ html: 'This liteDialog cannot be dismissed except through JavaScript - in this example we\'ve a setTimeout to dismiss it after 4 seconds.', modal:true} );
+                
+                setTimeout(function() {
+                    $.liteDialog('hide');
+                }, 4000);
+            });
+        });
+        
+        </script>
     </head>
     <body>
         <a href="http://www.puremango.co.uk/2011/04/jquery-simple-dialog/">jQuery liteDialog plugin</a> demo page<br /><br />
