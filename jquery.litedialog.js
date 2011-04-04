@@ -31,15 +31,15 @@
             
             // create shadow if not already added to DOM
             if($('#'+prefix+'Shadow').length === 0) {
-                $("<div id='"+prefix+"Shadow' style='position:fixed;top:0;left:0;'>").hide().css({
-                    "height" : $(document).height(),
-                    "width" : $(document).width()
+                $('<div id="'+prefix+'Shadow" style="position:fixed;top:0;left:0;">').hide().css({
+                    'height' : $(document).height(),
+                    'width' : $(document).width()
                 }).appendTo(document.body);
             }
             
             // create dialog if not already added to DOM
             if($('#'+prefix+'Dialog').length === 0) {
-                $("<div id='"+prefix+"Dialog' style='position:absolute;'>").hide().appendTo(document.body);
+                $('<div id="'+prefix+'Dialog" style="position:absolute;">').hide().appendTo(document.body);
             }
             
             // fade shadow in (i.e. fade page out to black). Settings could vary with each call, so we set the CSS here not on element creation.
@@ -55,7 +55,7 @@
                 'padding' : settings.padding,
                 'top' : ($(window).height() - $('#'+prefix+'Dialog').outerHeight()) / 2 + $(window).scrollTop(),
                 'left' : ($(window).width() - $('#'+prefix+'Dialog').outerWidth()) / 2 + $(window).scrollLeft(),
-                'z-index':settings.zIndex+1
+                'z-index' : settings.zIndex+1
             }).fadeIn();
             
             if(!settings.modal) {
@@ -67,7 +67,7 @@
             } else {
               // remove handlers that may have been present from previously shown dialogs
               $('#'+prefix+'Shadow, #'+prefix+'Dialog').unbind();
-              $(document).unbind("keyup", escapeHitHide);
+              $(document).unbind('keyup', escapeHitHide);
             }
         },
         hide : function() {
