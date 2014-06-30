@@ -1,9 +1,17 @@
 /*jslint browser:true, sloppy:true, devel:true */
 /*global jQuery */
-/* liteDialog by Howard Yeend, developed for Twist Digital Media */
-/* Basic usage: to show: $.liteDialog('Dialog contents here'); */
-/* to hide: $.liteDialog('hide'); */
-/* more at http://www.puremango.co.uk/2011/04/jquery-simple-dialog/ and source available at https://github.com/user24/jQuery-liteDialog */
+
+/*
+
+liteDialog by Howard Yeend; https://github.com/user24/jQuery-liteDialog
+
+Basic usage: to show: $.liteDialog('Dialog contents here');
+
+to hide: $.liteDialog('hide');
+
+more at http://www.puremango.co.uk/2011/04/jquery-simple-dialog/ and source available at https://github.com/user24/jQuery-liteDialog
+
+*/
 (function ($) {
     function escapeHitHide(e) {
         if (e.keyCode === 27) {
@@ -12,13 +20,17 @@
     }
     // prefix element IDs to avoid dom conflicts.
     var prefix = 'hyLite',
+        settings = {
+            'html' : 'liteDialog',
+            'modal' : false,
+            'fadeInDuration': 400,
+            'fadeOutDuration': 400,
+            'shadowOpacity': 0.4,
+            'zIndex' : '9000',
+            'innerClickDismiss': true
+        },
         methods = {
             init : function (options) {
-                var settings = {
-                    'html' : 'liteDialog',
-                    'modal' : false,
-                    'zIndex' : '9000'
-                };
 
                 // If options have been sent, merge with our default settings
                 if (options) {
@@ -42,29 +54,35 @@
                 $('#' + prefix + 'Shadow').css({
                     'background': settings.shadow,
                     'z-index': settings.zIndex
-                }).fadeTo('fast', 0.4);
+                }).fadeTo(settings.fadeInDuration, settings.shadowOpacity);
 
                 // fade dialog in, centered on page.
                 $('#' + prefix + 'Dialog').html(settings.html).width(settings.width).css({
                     'top': ($(window).height() - $('#' + prefix + 'Dialog').outerHeight()) / 2 + $(window).scrollTop(),
                     'left': ($(window).width() - $('#' + prefix + 'Dialog').outerWidth()) / 2 + $(window).scrollLeft(),
                     'z-index' : settings.zIndex + 1
-                }).fadeIn();
+                }).fadeIn(settings.fadeInDuration);
 
                 if (!settings.modal) {
                     // hit ESC or click anywhere to dismiss if not modal
-                    $('#' + prefix + 'Shadow, #' + prefix + 'Dialog').click(function () {
+                    $('#' + prefix + 'Shadow').click(function () {
                         $.liteDialog('hide');
                     });
+                    if (settings.innerClickDismiss) {
+                        $('#' + prefix + 'Dialog').click(function () {
+                            $.liteDialog('hide');
+                        });
+                    }
                     $(document).keyup(escapeHitHide);
                 } else {
                     // remove handlers that may have been present from previously shown dialogs
                     $('#' + prefix + 'Shadow, #' + prefix + 'Dialog').unbind();
                     $(document).unbind('keyup', escapeHitHide);
                 }
+                return $('#' + prefix + 'Dialog');
             },
             hide: function () {
-                $('#' + prefix + 'Shadow, #' + prefix + 'Dialog').fadeOut();
+                $('#' + prefix + 'Shadow, #' + prefix + 'Dialog').fadeOut(settings.fadeOutDuration);
             }
         };
     $.liteDialog = $.fn.liteDialog = function (method) {
